@@ -10,15 +10,19 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/react-helmet": "^6.1.5",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gatsby": "^4.24.3",
+    "gatsby-plugin-canonical-urls": "^4.24.0",
     "gatsby-plugin-emotion": "^7.24.0",
     "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-manifest": "^4.24.0",
     "gatsby-plugin-react-helmet": "^5.24.0",
+    "gatsby-plugin-robots-txt": "^1.7.1",
     "gatsby-plugin-sharp": "^4.24.0",
+    "gatsby-plugin-sitemap": "^5.24.0",
     "gatsby-plugin-typescript": "^4.24.0",
     "gatsby-remark-copy-linked-files": "^5.24.0",
     "gatsby-remark-external-links": "^0.0.4",
@@ -37,6 +41,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.39.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
   },
@@ -51,7 +56,8 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "gatsby build && gh-pages -d public -b main"
   },
   "repository": {
     "type": "git",

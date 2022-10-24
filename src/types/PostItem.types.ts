@@ -8,7 +8,8 @@ export type PostFrontmatterType = {
   thumbnail: {
     childImageSharp: {
       gatsbyImageData: IGatsbyImageData
-    }
+    },
+    publicURL: string
   }
 };
 
