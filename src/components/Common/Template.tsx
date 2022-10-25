@@ -25,6 +25,7 @@ const Template : FunctionComponent<TemplateProps> = function({
   image,
   children
 }){
+  
   return (
     <Container>
       <Helmet>

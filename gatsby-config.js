@@ -82,7 +82,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'Mitty0719.github.io',
+        siteUrl: 'https://Mitty0719.github.io',
         scriptQueryString: true
       }
     },
