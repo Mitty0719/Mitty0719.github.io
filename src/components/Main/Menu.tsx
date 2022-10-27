@@ -1,29 +1,47 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 
 const MenuWrapper = styled('nav')`
   position: absolute;
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   top: 37.5px;
-  right: 36px;
+  left: 50%;
   gap: 32px;
+  transform: translateX(-50%);
 `;
-const MenuItem = styled('div')`
-  font-size: 18px;
-  font-weight: 700;
+const MenuItem = styled(Link)`
+  position: relative;
+  font-size: 14px;
   text-align: right;
+  line-height: 22px;
+  &:after{
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #444;
+    transition-duration: .8s;
+    content: '';
+}
+  &:hover{
+    &::after{
+      width: 100%;
+    }
+  }
 `;
 
 
 const Menu: FunctionComponent = function(){
   return (
     <MenuWrapper>
-      <MenuItem>DESIGN</MenuItem>
-      <MenuItem>PHOTO</MenuItem>
-      <MenuItem>PROJECT</MenuItem>
-      <MenuItem>PROGRAMMING</MenuItem>
-      <MenuItem>THINKING</MenuItem>
+      <MenuItem to="/">ABOUT ME</MenuItem>
+      <MenuItem to="/DESIGN">DESIGN</MenuItem>
+      <MenuItem to="/PHOTO">PHOTO</MenuItem>
+      <MenuItem to="/PROJECT">PROJECT</MenuItem>
     </MenuWrapper>
   );
 }

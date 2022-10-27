@@ -5,31 +5,30 @@ import { PostListItemType } from 'types/PostItem.types';
 import useInfinityScroll, { useInfiniteScrollType } from 'hooks/useInfinityScroll';
 
 type PostListProps = {
-  selectedCategory: string,
+  selectedTag: string,
   posts: PostListItemType[]
 }
 
 const PostListWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  width: 768px;
+  grid-template-columns: 1fr;
+  grid-gap: 320px;
+  width: 100%;
   margin: 0 auto;
   padding: 50px 0 100px;
 
   @media (max-width: 768px){
-    grid-template-columns: 1fr;
     width: 100%;
     padding: 50px 20px;
   }
 `;
 
 const PostList : FunctionComponent<PostListProps> = function({
-  selectedCategory,
+  selectedTag,
   posts
 }){
 
-  const { containerRef, postList }: useInfiniteScrollType = useInfinityScroll(selectedCategory, posts);
+  const { containerRef, postList }: useInfiniteScrollType = useInfinityScroll(selectedTag, posts);
 
   return <PostListWrapper ref={containerRef}>
     { postList.map(

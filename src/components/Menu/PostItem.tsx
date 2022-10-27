@@ -9,27 +9,29 @@ type PostItemProps = PostFrontmatterType & { link: string };
 const PostItemWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  gap: 30px;
   transition: 0.3s box-shadow;
   cursor: pointer;
+  // box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
+  // &:hover {
+  //   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  // }
+  padding: 37.5px 36px;
+  background-color: #fbfbfb;
 `;
 
 const ThumbnailImage = styled(GatsbyImage)`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+  width: 1100px;
+  height: 600px;
 `;
 
 const PostItemContent = styled.div`
+  width: 1100px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 15px;
 `;
 
 const Title = styled.div`
@@ -41,63 +43,64 @@ const Title = styled.div`
   overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 20px;
+  font-size: 32px;
   font-weight: 700;
-`
-
-const Date = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  opacity: 0.7;
-`
-
-const Category = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  margin: 10px -5px;
-`
-
-const CategoryItem = styled.div`
-  margin: 2.5px 5px;
-  padding: 3px 5px;
-  border-radius: 3px;
-  background: black;
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
 `;
-
 const Summary = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  margin-top: auto;
+  margin-top: 50px;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.8;
 `;
+const TagWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  gap: 42px;
+  margin-top: 25px;
+`;
+const Tag = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+`;
+const TagItem = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+`;
+const Date = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.7;
+`;
+
+
 
 const PostItem: FunctionComponent<PostItemProps> = function({
-  title, date, categories, summary, thumbnail: { 
+  title, date, tags, summary, thumbnail: { 
     childImageSharp: { gatsbyImageData }
-   }, link
+  }, link
 }){
   return <PostItemWrapper to={link}>
-    <ThumbnailImage image={gatsbyImageData} alt="Post Image"/>
     <PostItemContent>
       <Title>{title}</Title>
-      <Date>{date}</Date>
-      <Category>
-        {categories.map(category => (
-          <CategoryItem key={category}>{category}</CategoryItem>
-        ))}
-      </Category>
       <Summary>{summary}</Summary>
+      <TagWrapper>
+        <Tag>
+          {tags.map(tag => (
+            <TagItem key={tag}>#{tag}</TagItem>
+          ))}
+        </Tag>
+        <Date>{date}</Date>
+      </TagWrapper>
     </PostItemContent>
+    <ThumbnailImage image={gatsbyImageData} alt="Post Image"/>
   </PostItemWrapper>
 }
 

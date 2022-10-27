@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import Introduction from 'components/Main/Introduction';
-import CategoryList, { CategoryListProps } from 'components/Main/CategoryList';
+import TagList, { TagListProps } from 'components/Main/TagList';
 import PostList  from 'components/Main/PostList';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { PostListItemType } from 'types/PostItem.types';
@@ -47,23 +47,23 @@ const IndexPage: FunctionComponent<indexPageProps> = function({
 }){
 
   const parsed: ParsedQuery<string> = queryString.parse(search);
-  const selectedCategory: string = typeof parsed.category !== 'string' || !parsed.category
+  const selectedTag: string = typeof parsed.tag !== 'string' || !parsed.tag
   ? 'All'
-  : parsed.category;
+  : parsed.tag;
 
-  const categoryList = useMemo(
+  const tagList = useMemo(
     () => edges.reduce(
       (
-        list: CategoryListProps['categoryList'],
+        list: TagListProps['tagList'],
         {
           node: {
-            frontmatter: { categories },
+            frontmatter: { tags },
           },
         }: PostListItemType,
       ) => {
-        categories.forEach(category => {
-          if(list[category] === undefined) list[category] = 1;
-          else list[category]++;
+        tags.forEach(tag => {
+          if(list[tag] === undefined) list[tag] = 1;
+          else list[tag]++;
         })
         list['All']++;
 
@@ -81,8 +81,8 @@ const IndexPage: FunctionComponent<indexPageProps> = function({
       url={siteUrl}
       image={publicURL}>
       <Introduction profileImage={gatsbyImageData}/>
-      <CategoryList selectedCategory={selectedCategory} categoryList={categoryList}/>
-      <PostList posts={edges} selectedCategory={selectedCategory}/>
+      {/* <TagList selectedTag={selectedTag} tagList={tagList}/> */}
+      {/* <PostList posts={edges} selectedTag={selectedTag}/> */}
     </Template>
   )
 }
@@ -111,7 +111,8 @@ export const getPostList = graphql`
             title
             summary
             date(formatString: "YYYY.MM.DD.")
-            categories
+            category
+            tags
             thumbnail {
               childImageSharp {
                 gatsbyImageData(width: 768, height:400)

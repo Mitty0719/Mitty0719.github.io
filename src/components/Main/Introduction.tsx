@@ -29,15 +29,15 @@ const Wrapper = styled.div`
   }
 `;
 const BlogName = styled.div`
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 22px;
+  line-height: 22px;
 `;
 
 const Introduction : FunctionComponent<IntroductionProps> = function({ profileImage }){
   return (
     <Background>
       <Wrapper>
-        <BlogName>UX/UI Developer</BlogName>
+        <BlogName>JinWooLee&Mitty</BlogName>
         {/* <ProfileImage profileImage={ profileImage }/> */}
 
         <Menu/>

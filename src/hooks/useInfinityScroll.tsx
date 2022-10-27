@@ -9,18 +9,18 @@ export type useInfiniteScrollType = {
 const NUMBER_OF_ITEMS_PER_PAGE = 10;
 
 const useInfinityScroll = function(
-  selectedCategory: string,
+  selectedTag: string,
   posts: PostListItemType[]
 ): useInfiniteScrollType {
   const containerRef: MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState<number>(1);
-  const postListByCategory = useMemo<PostListItemType[]>(
-    () => posts.filter(({ node: { frontmatter: { categories }}} : PostListItemType ) => 
-      selectedCategory !== 'All'
-      ? categories.includes(selectedCategory)
+  const postListByTag = useMemo<PostListItemType[]>(
+    () => posts.filter(({ node: { frontmatter: { tags }}} : PostListItemType ) => 
+      selectedTag !== 'All'
+      ? tags.includes(selectedTag)
       : true,
     ),
-    [selectedCategory]
+    [selectedTag]
   )
 
   const observer: MutableRefObject<IntersectionObserver | null> = useRef<IntersectionObserver>(null);
@@ -34,11 +34,11 @@ const useInfinityScroll = function(
     })
   }, []);
 
-  useEffect(() => setCount(1), [selectedCategory]);
+  useEffect(() => setCount(1), [selectedTag]);
 
   useEffect(() => {
     if(
-      NUMBER_OF_ITEMS_PER_PAGE * count >= postListByCategory.length ||
+      NUMBER_OF_ITEMS_PER_PAGE * count >= postListByTag.length ||
       containerRef.current === null ||
       containerRef.current.children.length === 0 ||
       observer.current === null
@@ -48,11 +48,11 @@ const useInfinityScroll = function(
       observer.current.observe(
         containerRef.current.children[containerRef.current.children.length - 1]
       )
-  }, [count, selectedCategory])
+  }, [count, selectedTag])
 
   return { 
     containerRef,
-    postList: postListByCategory.slice(0, count * NUMBER_OF_ITEMS_PER_PAGE)
+    postList: postListByTag.slice(0, count * NUMBER_OF_ITEMS_PER_PAGE)
   };
 }
 
