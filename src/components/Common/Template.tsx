@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import GlobalStyle from 'components/Common/GlobalStyle';
+import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
 import { Helmet } from 'react-helmet';
 
@@ -52,6 +53,7 @@ const Template : FunctionComponent<TemplateProps> = function({
         <meta name="naver-site-verification" content="375d4a0a7c4d6b174130b9c9553120653290c1a9" />
         <html lang="ko"/>
       </Helmet>
+      <Header/>
       <GlobalStyle/>
       {children}
       <Footer/>

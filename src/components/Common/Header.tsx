@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import ProfileImage from './ProfileImage';
+import Menu from './Menu';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-type IntroductionProps = {
+type HeaderProps = {
 }
 
 const Background = styled.div`
@@ -16,7 +17,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  height: 100vh;
   margin: 0 auto;
   padding: 37.5px 36px;
 
@@ -31,14 +31,17 @@ const BlogName = styled.div`
   line-height: 22px;
 `;
 
-const Introduction : FunctionComponent<IntroductionProps> = function(){
+const Header : FunctionComponent<HeaderProps> = function(){
   return (
     <Background>
       <Wrapper>
+        <BlogName>JinWooLee&Mitty</BlogName>
         {/* <ProfileImage profileImage={ profileImage }/> */}
+
+        <Menu/>
       </Wrapper>
     </Background>
   )
 }
 
-export default Introduction;
+export default Header;

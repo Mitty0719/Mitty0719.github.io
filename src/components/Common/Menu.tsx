@@ -39,9 +39,9 @@ const Menu: FunctionComponent = function(){
   return (
     <MenuWrapper>
       <MenuItem to="/">ABOUT ME</MenuItem>
-      <MenuItem to="/DESIGN">DESIGN</MenuItem>
-      <MenuItem to="/PHOTO">PHOTO</MenuItem>
-      <MenuItem to="/PROJECT">PROJECT</MenuItem>
+      <MenuItem to="/design">DESIGN</MenuItem>
+      <MenuItem to="/photo">PHOTO</MenuItem>
+      <MenuItem to="/project">PROJECT</MenuItem>
     </MenuWrapper>
   );
 }
