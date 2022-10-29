@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[691],{7200:function(t,a,e){e.r(a);var i=e(5097),r=e(3431);a.default=function(t){t.location.search;var a=t.data,e=a.site.siteMetadata,s=e.title,l=e.description,u=e.siteUrl,c=a.file,n=(c.childImageSharp.gatsbyImageData,c.publicURL);return(0,r.tZ)(i.Z,{title:s,description:l,url:u,image:n})}}}]);
+//# sourceMappingURL=component---src-pages-index-tsx-85ca2b14016f61a27414.js.map
