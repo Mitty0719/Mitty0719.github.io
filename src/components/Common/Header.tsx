@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import ProfileImage from './ProfileImage';
 import Menu from './Menu';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 
 type HeaderProps = {
 }
@@ -26,7 +27,7 @@ const Wrapper = styled.div`
     padding: 0 20px;
   }
 `;
-const BlogName = styled.div`
+const BlogName = styled(Link)`
   font-size: 22px;
   line-height: 22px;
 `;
@@ -35,7 +36,7 @@ const Header : FunctionComponent<HeaderProps> = function(){
   return (
     <Background>
       <Wrapper>
-        <BlogName>JinWooLee&Mitty</BlogName>
+        <BlogName to="/">JinWooLee&Mitty</BlogName>
         {/* <ProfileImage profileImage={ profileImage }/> */}
 
         <Menu/>

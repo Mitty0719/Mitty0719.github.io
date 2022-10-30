@@ -3,7 +3,8 @@ import { graphql } from 'gatsby';
 import { PostFrontmatterType } from 'types/PostItem.types';
 import Template from 'components/Common/Template';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import PostContent from 'components/Post/PostContent';
+import PostContent from 'components/Post/Common/PostContent';
+import ContinuousPost from 'components/Post/Continuous/ContinuousPost';
 
 type DesignPageProps = {
   data: {
@@ -21,16 +22,6 @@ type DesignPageProps = {
       childImageSharp: IGatsbyImageData
       publicURL: string
     }
-  }
-}
-type htmlPostListItemType = {
-  node: {
-    id: string,
-    html: string,
-    fields: {
-      slug: string
-    }
-    frontmatter: PostFrontmatterType[]
   }
 }
 
@@ -52,7 +43,7 @@ const DesignPage: FunctionComponent<DesignPageProps> = function({
     <Template title={title} description={description} url={siteUrl} image={publicURL}>
       {
         Object.entries(edges).map(([id, {node}]) => {
-          return <PostContent key={id} html={node.html}/>
+          return <ContinuousPost node={node}/>
       })
       }
       {/* <PostContent html={html}/> */}
