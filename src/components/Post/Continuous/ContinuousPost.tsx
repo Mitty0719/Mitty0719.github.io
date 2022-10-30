@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import PostContent from 'components/Post/Common/PostContent';
-import ContinuousPostHeader from './ContinuousPostHeader';
+import ContinuousPostHeader from 'components/Post/Continuous/ContinuousPostHeader';
+import CommentLink from 'components/Post/Continuous/CommentLink'
 import { PostFrontmatterType } from 'types/PostItem.types';
 
 type ContinuousPostProps = {
@@ -16,9 +17,8 @@ type ContinuousPostProps = {
 }
 
 const ContinuousPostWrap = styled.div`
-
+  margin: 100px 0;
 `;
-
 
 
 const ContinuousPost: FunctionComponent<ContinuousPostProps> = function({
@@ -31,6 +31,7 @@ const ContinuousPost: FunctionComponent<ContinuousPostProps> = function({
   return <ContinuousPostWrap>
     <ContinuousPostHeader data={frontmatter}/>
     <PostContent html={html}/>
+    <CommentLink slug={slug}/>
   </ContinuousPostWrap>
 }
 

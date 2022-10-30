@@ -63,7 +63,7 @@ export const getPostList = graphql`
     }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
-      filter: { frontmatter: { category: { eq: "design" }}}
+      filter: { frontmatter: { category: { eq: "photo" }}}
     ) {
       edges {
         node {
