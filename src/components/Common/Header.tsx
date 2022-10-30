@@ -23,8 +23,17 @@ const Wrapper = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 300px;
+    height: 200px;
     padding: 0 20px;
+  }
+`;
+const BlogNameWrap = styled.div`
+  @media (max-width: 768px){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
   }
 `;
 const BlogName = styled(Link)`
@@ -36,7 +45,9 @@ const Header : FunctionComponent<HeaderProps> = function(){
   return (
     <Background>
       <Wrapper>
-        <BlogName to="/">JinWooLee&Mitty</BlogName>
+        <BlogNameWrap>
+          <BlogName to="/">JinWooLee&Mitty</BlogName>
+        </BlogNameWrap>
         {/* <ProfileImage profileImage={ profileImage }/> */}
 
         <Menu/>

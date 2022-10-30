@@ -24,6 +24,18 @@ const defaultStyle = css`
     text-decoration: none;
     cursor: pointer;
   }
+
+  /* scroll */
+  ::-webkit-scrollbar{
+    width: 8px;
+    background-color: #fff;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: #707070;
+  }
+  ::-webkit-scrollbar-track{
+
+  }
 `;
 
 const GlobalStyle : FunctionComponent = function(){

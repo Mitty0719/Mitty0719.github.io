@@ -47,7 +47,7 @@ const PostData = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 
   @media (max-width: 768px) {
@@ -56,6 +56,9 @@ const PostData = styled.div`
     font-size: 15px;
     font-weight: 400;
   }
+`;
+const Tags = styled.div`
+  font-size: 14px;
 `;
 
 const ContinuousPostHeader: FunctionComponent<ContinuousPostHeaderProps> = function({
@@ -74,7 +77,7 @@ const ContinuousPostHeader: FunctionComponent<ContinuousPostHeaderProps> = funct
       <Title>{title}</Title>
       <PostData>
         <div>{date}</div>
-        <div>{tags.join(' / ')}</div>
+        <Tags>{tags.join(' / ')}</Tags>
       </PostData>
     </ContinuousPostHeaderInfo>
   </ContinuousPostHeaderWrap>

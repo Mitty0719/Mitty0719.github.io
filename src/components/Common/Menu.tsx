@@ -10,6 +10,13 @@ const MenuWrapper = styled('nav')`
   left: 50%;
   gap: 32px;
   transform: translateX(-50%);
+
+  @media (max-width: 768px){
+    position: relative;
+    top: 0;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 const MenuItem = styled(Link)`
   position: relative;
