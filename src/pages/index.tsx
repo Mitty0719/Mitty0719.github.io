@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useMemo } from 'react';
-import Introduction from 'components/Main/Introduction';
+import React, { FunctionComponent, useState, useEffect, useRef } from 'react';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { graphql } from 'gatsby';
 import Template from 'components/Common/Template';
+import AboutMe from 'components/Main/AboutMe';
 
 type indexPageProps = {
   location: {
@@ -44,7 +44,7 @@ const IndexPage: FunctionComponent<indexPageProps> = function({
       description={description}
       url={siteUrl}
       image={publicURL}>
-      
+      <AboutMe/>
     </Template>
   )
 }

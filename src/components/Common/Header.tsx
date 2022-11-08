@@ -9,8 +9,12 @@ type HeaderProps = {
 }
 
 const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-image: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 `;
 
 const Wrapper = styled.div`
@@ -20,12 +24,6 @@ const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 37.5px 36px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 200px;
-    padding: 0 20px;
-  }
 `;
 const BlogNameWrap = styled.div`
   @media (max-width: 768px){
