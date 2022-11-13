@@ -45,7 +45,7 @@ const Header : FunctionComponent<HeaderProps> = function(){
     <Background>
       <Wrapper>
         <BlogNameWrap>
-          <BlogName to="/">JINULEE&MIITY</BlogName>
+          <BlogName to="/">JINULEE&MITTY</BlogName>
         </BlogNameWrap>
         {/* <ProfileImage profileImage={ profileImage }/> */}
 
