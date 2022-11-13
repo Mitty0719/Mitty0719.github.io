@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   width: 100%;
   margin: 0 auto;
-  padding: 37.5px 36px;
+  padding: 20px 140px;
 `;
 const BlogNameWrap = styled.div`
   @media (max-width: 768px){
@@ -35,8 +35,9 @@ const BlogNameWrap = styled.div`
   }
 `;
 const BlogName = styled(Link)`
-  font-size: 22px;
-  line-height: 22px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 24px;
 `;
 
 const Header : FunctionComponent<HeaderProps> = function(){
@@ -44,7 +45,7 @@ const Header : FunctionComponent<HeaderProps> = function(){
     <Background>
       <Wrapper>
         <BlogNameWrap>
-          <BlogName to="/">JinWooLee&Mitty</BlogName>
+          <BlogName to="/">JINULEE&MIITY</BlogName>
         </BlogNameWrap>
         {/* <ProfileImage profileImage={ profileImage }/> */}
 
