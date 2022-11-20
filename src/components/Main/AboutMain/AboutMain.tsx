@@ -1,27 +1,21 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import MainText from './MainText';
+import AboutMainCanvas from './AboutMainCanvas';
 
 const AboutMainWrap = styled.section`
   
 `;
 
 const AboutMain:FunctionComponent = function(){
+  const aboutMainWrap = useRef<HTMLDivElement>(null);
+  let aboutMainCanvas;
 
-  const aboutMainWrap = useRef<any>(null);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize(){
+  useEffect(function(){
     if(aboutMainWrap.current){
-      canvas.width = aboutMainWrap.current.clientWidth;
-      canvas.height = aboutMainWrap.current.clientHeight;
+      aboutMainCanvas = new AboutMainCanvas(aboutMainWrap.current);
     }
-  }
-
-  useEffect(() => {
-    resize();
-  }, []);
+  }, [])
 
   return (
     <AboutMainWrap ref={aboutMainWrap}>

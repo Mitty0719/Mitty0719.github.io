@@ -5,13 +5,19 @@ class Text{
   private value : string;
   private directionX : number;
   private directionY : number;
+
   constructor(value : string){
     this.x = 0;
     this.y = 0;
-    this.directionX = -1;
-    this.directionY = -1;
+    this.directionX = 1;
+    this.directionY = 0;
     this.isBlur = false;
     this.value = value;
+  }
+
+  move(){
+    this.x += this.directionX;
+    this.y += this.directionY;
   }
 
   draw(ctx: CanvasRenderingContext2D){
