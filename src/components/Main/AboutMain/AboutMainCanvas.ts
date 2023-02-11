@@ -16,6 +16,9 @@ class AboutMainCanvas{
     this.ctx = this.canvas.getContext('2d');
     this.stageWidth = 0;
     this.stageHeight = 0;
+    this.canvas.style.position = 'absolute';
+    this.canvas.style.top = '0';
+    this.canvas.style.left = '0';
     
     this.parentNode = parentNode;
     if(this.parentNode){

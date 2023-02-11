@@ -4,7 +4,7 @@ import MainText from './MainText';
 import AboutMainCanvas from './AboutMainCanvas';
 
 const AboutMainWrap = styled.section`
-  
+  position: relative;
 `;
 
 const AboutMain:FunctionComponent = function(){
