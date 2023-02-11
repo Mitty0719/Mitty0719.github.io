@@ -19,6 +19,7 @@ const MainTextWrap = styled.div`
   left: 0px;
   transform: translateX(-100%);
   animation: ${keyframe} 1s ease forwards;
+  z-index: 2;
 `;
 
 const MainTextCon = styled.div`
