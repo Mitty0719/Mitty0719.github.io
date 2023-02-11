@@ -25,6 +25,10 @@ const defaultStyle = css`
     cursor: pointer;
   }
 
+  ul, li {
+    list-style: none;
+  }
+
   /* scroll */
   ::-webkit-scrollbar{
     width: 8px;
