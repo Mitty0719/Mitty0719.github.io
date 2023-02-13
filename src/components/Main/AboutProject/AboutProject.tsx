@@ -4,7 +4,6 @@ import ProjectList from './ProjectList';
 
 
 const AboutProjectWrap = styled.section`
-  
 `;
 
 const ProjectTitle = styled.div`

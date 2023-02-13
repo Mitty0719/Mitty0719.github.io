@@ -8,13 +8,23 @@ type ProjectItemProps = {
   endPeriod: String
 }
 
+const ContentWrap = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translate(50%, -50%);
+  transition-duration: 1s;
+  opacity: 0;
+`;
+
 const ProjectItemWrap = styled.div`
+  &:hover ${ContentWrap} {
+      opacity: 1;
+  }
 `;
 
 const TitleWrap = styled.div`
 
-`;
-const ContentWrap = styled.div`
 `;
 const PeriodWrap = styled.div`
 `;
@@ -25,12 +35,14 @@ const ProjectItem : FunctionComponent<ProjectItemProps> = function({title, conte
       <TitleWrap>
         <h3>{title}</h3>
       </TitleWrap>
-      <ContentWrap>
-        {content}
-      </ContentWrap>
       <PeriodWrap>
-        {startPeriod} / {endPeriod}
+        {startPeriod} ~ {endPeriod}
       </PeriodWrap>
+      <ContentWrap>
+        <pre>
+          {content}
+        </pre>
+      </ContentWrap>
     </ProjectItemWrap>
   );
 }
