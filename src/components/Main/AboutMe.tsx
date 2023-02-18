@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import AboutMain from './AboutMain/AboutMain';
 import AboutInfo from './AboutInfo/AboutInfo';
-import AboutProject from './AboutProject/AboutProject';
+import AboutCareer from './AboutCareer/AboutCareer';
 
 const AboutMeWrap = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ const AboutMe : FunctionComponent = function(){
     <AboutMeWrap>
       <AboutMain/>
       <AboutInfo/>
-      <AboutProject/>
+      <AboutCareer/>
     </AboutMeWrap>
   );
 }

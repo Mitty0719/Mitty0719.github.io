@@ -15,6 +15,7 @@ const Background = styled.div`
   width: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
+  z-index: 1000;
 `;
 
 const Wrapper = styled.div`
