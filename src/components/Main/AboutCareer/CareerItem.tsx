@@ -29,7 +29,7 @@ const CareerInfoWrap = styled.div`
   }
   &:hover {
     &:after {
-      width: calc(31vw - 100%);
+      width: calc(100vw - 20vw - 40vw - 100% - 40px);
     }
   }
 `;
@@ -48,6 +48,7 @@ const ContentWrap = styled.div`
   width: 40vw;
   line-height: 30px;
   color: #eee;
+  font-size: 14px;
   transition-duration: 1s;
 `;
 

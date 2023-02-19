@@ -7,7 +7,20 @@ const IntroductionWrap = styled.article`
 `;
 
 const title = `Introduction`;
-const content = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aperiam quidem omnis nobis rerum accusamus, ut explicabo magnam quae nisi, eos dolorum qui adipisci cumque. Culpa molestiae nemo excepturi eveniet.`;
+const content =
+`Vanilla JavaScript를 좋아하는 UX/UI 개발자 입니다.
+웹디자인 과정을 수료하며 본격적으로 프로그래밍을 접했고 현재 퍼블리셔로 커리어를 쌓고있습니다.
+JavaScript로 인터렉션이 많은 웹 페이지를 만드는 것을 좋아합니다.
+그리고 그저 JavaScript를 사랑합니다.
+
+
+
+
+
+JavaScript . . .
+JavaScript . .
+JavaScript .
+`;
 
 const Introduction:FunctionComponent = function() {
   return (

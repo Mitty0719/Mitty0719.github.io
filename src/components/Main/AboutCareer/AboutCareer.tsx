@@ -5,7 +5,6 @@ import CompanyIconList from './CompanyIconList';
 
 
 const AboutCareerWrap = styled.section`
-  height: initial !important;
 `;
 
 const CareerTitleCon = styled.div`

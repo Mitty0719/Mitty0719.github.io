@@ -63,7 +63,7 @@ const ItemsList = [
   {
     title: `Posco\nSafety&Health System`,
     content: `
-    
+      Posco의 안전보건시스템 제작 프로젝트에 참여중입니다.
     `,
     startDate: `2022.07`,
     endDate: `in progress`,
@@ -71,7 +71,7 @@ const ItemsList = [
   {
     title: `PoscoE&C\nHumanResource System`,
     content: `
-    
+      PoscoE&C(포스코건설)의 안전보건시스템 제작 프로젝트에 참여중입니다.
     `,
     startDate: `2023.01`,
     endDate: `in progress`,

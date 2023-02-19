@@ -10,8 +10,7 @@ const AboutMeWrap = styled.div`
   background-color: #fff;
   section {
     width: 100%;
-    height: 100vh;
-    padding: 50px 140px;
+    padding: 50px 10vw;
     &[class*='AboutMain'] {
       padding: 0 0;
     }

@@ -5,6 +5,7 @@ import AboutMainCanvas from './AboutMainCanvas';
 
 const AboutMainWrap = styled.section`
   position: relative;
+  height: 100vh;
 `;
 
 const AboutMain:FunctionComponent = function(){

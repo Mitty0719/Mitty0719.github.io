@@ -41,7 +41,9 @@ const IntroText: FunctionComponent<IntroTextProps> = function({ title, content }
       {
         isString
         ? <IntroTextCon>
+          <pre>
             {content}
+          </pre>
         </IntroTextCon>
         : <IntroTextArrayCon>
           {
