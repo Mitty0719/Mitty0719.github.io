@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 type CareerItemProps = {
   title: String,
   content: String,
-  startPeriod: String,
-  endPeriod: String
+  startDate: String,
+  endDate: String
 }
 
 const CareerItemWrap = styled.div`
@@ -52,7 +52,7 @@ const ContentWrap = styled.div`
 `;
 
 
-const CareerItem : FunctionComponent<CareerItemProps> = function({title, content, startPeriod, endPeriod}) {
+const CareerItem : FunctionComponent<CareerItemProps> = function({title, content, startDate, endDate}) {
   return (
     <CareerItemWrap>
       <CareerInfoWrap>
@@ -60,7 +60,7 @@ const CareerItem : FunctionComponent<CareerItemProps> = function({title, content
           <h3><pre>{title}</pre></h3>
         </TitleWrap>
         <PeriodWrap>
-          {startPeriod} ~ {endPeriod}
+          {startDate} ~ {endDate}
       </PeriodWrap>
       </CareerInfoWrap>
       <ContentWrap>

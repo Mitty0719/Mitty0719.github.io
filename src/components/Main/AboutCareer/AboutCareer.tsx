@@ -8,10 +8,14 @@ const AboutCareerWrap = styled.section`
   height: initial !important;
 `;
 
+const CareerTitleCon = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+`
 const CareerTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 24px;
 `;
 
 
@@ -19,10 +23,12 @@ const CareerTitle = styled.div`
 const AboutCareer : FunctionComponent = function () {
   return (
     <AboutCareerWrap>
-      <CompanyIconList/>
-      <CareerTitle>
-        <h3>Career</h3>
-      </CareerTitle>
+      <CareerTitleCon>
+        <CareerTitle>
+          <h3>Career</h3>
+        </CareerTitle>
+        <CompanyIconList/>
+      </CareerTitleCon>
       <CareerList/>
     </AboutCareerWrap>
   );

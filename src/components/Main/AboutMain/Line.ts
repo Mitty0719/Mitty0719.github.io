@@ -1,4 +1,4 @@
-import { getRandomBoolean } from '../../../common';
+import { getRandomBoolean } from '../../../../static/js/common';
 
 class Line{
   public width: number;

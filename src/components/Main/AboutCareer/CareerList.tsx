@@ -7,6 +7,7 @@ const CareerListWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   gap: 50px;
+  margin-top: 84px;
 `;
 
 const ItemsList = [
@@ -18,8 +19,8 @@ const ItemsList = [
       협력업체 담당 직원분과 함께 설비의 요소들이 허용치 안에 있는지 검사하는 과정을 거쳤습니다.
       제작되어있는 본사의 메뉴얼을 바탕으로 검사를 진행했으며 허용치 이상의 오차가 발생하면 보고 후 조치할 수 있도록 했습니다.
     `,
-    startPeriod: `2017.11`,
-    endPeriod: `2018.04`,
+    startDate: `2017.11`,
+    endDate: `2018.04`,
   },
   {
     title: `Film Company\nManufacturing Execution System`,
@@ -41,8 +42,8 @@ const ItemsList = [
 
       사용자 분들이 기능을 쉽게 이해할 수 있도록 메뉴얼을 작성했습니다. 메뉴얼은 화면별로 작성했으며, 화면의 정보와 각각 요소의 기능을 알기쉽도록 기술했습니다.
     `,
-    startPeriod: `2021.06`,
-    endPeriod: `2021.10`,
+    startDate: `2021.06`,
+    endDate: `2021.10`,
   },
   {
     title: `Electron Beam Company\nManufacturing Execution System`,
@@ -56,24 +57,24 @@ const ItemsList = [
 
       제작된 생산관리시스템 테스트를 진행했습니다. 공정 순서대로 다양한 테스트 케이스로 실행해 오류를 수정하고 완성도를 높였습니다.
     `,
-    startPeriod: `2021.08`,
-    endPeriod: `2021.10`,
+    startDate: `2021.08`,
+    endDate: `2021.10`,
   },
   {
     title: `Posco\nSafety&Health System`,
     content: `
     
     `,
-    startPeriod: `2022.07`,
-    endPeriod: `in progress`,
+    startDate: `2022.07`,
+    endDate: `in progress`,
   },
   {
     title: `PoscoE&C\nHumanResource System`,
     content: `
     
     `,
-    startPeriod: `2023.01`,
-    endPeriod: `in progress`,
+    startDate: `2023.01`,
+    endDate: `in progress`,
   },
 ]
 
@@ -86,8 +87,8 @@ const CareerList : FunctionComponent = function() {
             key={`${item.title}_${index}`} 
             title={item.title} 
             content={item.content} 
-            startPeriod={item.startPeriod} 
-            endPeriod={item.endPeriod} />
+            startDate={item.startDate} 
+            endDate={item.endDate} />
         ))
       }
     </CareerListWrap>
