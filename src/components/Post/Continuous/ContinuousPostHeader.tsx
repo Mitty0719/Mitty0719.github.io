@@ -64,12 +64,13 @@ const Tags = styled.div`
 const ContinuousPostHeader: FunctionComponent<ContinuousPostHeaderProps> = function({
   data: {
     title, date, tags, summary,
-    thumbnail: {
-      childImageSharp: {
-        gatsbyImageData
-      },
-      publicURL
-    }
+    // 이미지 처리시 사용
+    // thumbnail: {
+    //   childImageSharp: {
+    //     gatsbyImageData
+    //   },
+    //   publicURL
+    // }
   }
 }){
   return <ContinuousPostHeaderWrap>

@@ -8,7 +8,7 @@ const keyframe = keyframes`
     transform: translateX(-100%);
   }
   100%{
-    left: 140px;
+    left: 10vw;
     transform: translateX(0);
   }
 `;
