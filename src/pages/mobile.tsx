@@ -4,7 +4,7 @@ import Template from 'components/Common/Template';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import ContinuousPost from 'components/Post/Continuous/ContinuousPost';
 
-type DesignPageProps = {
+type MobilePageProps = {
   data: {
     site: {
       siteMetadata: {
@@ -23,7 +23,7 @@ type DesignPageProps = {
   }
 }
 
-const DesignPage: FunctionComponent<DesignPageProps> = function({
+const MobilePage: FunctionComponent<MobilePageProps> = function({
   data: {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -49,7 +49,7 @@ const DesignPage: FunctionComponent<DesignPageProps> = function({
   );
 }
 
-export default DesignPage;
+export default MobilePage;
 
 
 export const getPostList = graphql`
@@ -63,7 +63,7 @@ export const getPostList = graphql`
     }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
-      filter: { frontmatter: { category: { eq: "photo" }}}
+      filter: { frontmatter: { category: { eq: "mobile" }}}
     ) {
       edges {
         node {

@@ -4,7 +4,7 @@ import Template from 'components/Common/Template';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import ContinuousPost from 'components/Post/Continuous/ContinuousPost';
 
-type DesignPageProps = {
+type WebPageProps = {
   data: {
     site: {
       siteMetadata: {
@@ -23,7 +23,7 @@ type DesignPageProps = {
   }
 }
 
-const DesignPage: FunctionComponent<DesignPageProps> = function({
+const WebPage: FunctionComponent<WebPageProps> = function({
   data: {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -32,7 +32,7 @@ const DesignPage: FunctionComponent<DesignPageProps> = function({
       edges
     },
     file: {
-      childImageSharp: { gatsbyImageData },
+      // childImageSharp: { gatsbyImageData },
       publicURL,
     }
   }
@@ -49,7 +49,7 @@ const DesignPage: FunctionComponent<DesignPageProps> = function({
   );
 }
 
-export default DesignPage;
+export default WebPage;
 
 
 export const getPostList = graphql`
@@ -63,7 +63,7 @@ export const getPostList = graphql`
     }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
-      filter: { frontmatter: { category: { eq: "project" }}}
+      filter: { frontmatter: { category: { eq: "web" }}}
     ) {
       edges {
         node {

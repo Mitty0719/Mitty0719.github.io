@@ -4,7 +4,7 @@ title: '이전의 작업물들'
 category: 'design'
 tags: ['Phoster', 'Photoshop', 'Project']
 summary: ''
-thumbnail: ''
+thumbnail: './images/0_prev/polo.png'
 ---
 ### SQURE_DREAM (2022.5.28)
 

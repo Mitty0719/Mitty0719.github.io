@@ -46,9 +46,10 @@ const Menu: FunctionComponent = function(){
   return (
     <MenuWrapper>
       <MenuItem to="/">ABOUT ME</MenuItem>
+      <MenuItem to="/web">WEB</MenuItem>
+      <MenuItem to="/mobile">MOBILE</MenuItem>
       <MenuItem to="/design">DESIGN</MenuItem>
       <MenuItem to="/photo">PHOTO</MenuItem>
-      <MenuItem to="/project">PROJECT</MenuItem>
     </MenuWrapper>
   );
 }
