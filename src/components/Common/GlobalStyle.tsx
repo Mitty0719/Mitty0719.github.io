@@ -2,14 +2,14 @@ import React, { FunctionComponent } from 'react';
 import { Global, css } from '@emotion/react';
 
 const defaultStyle = css`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
 
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue', sans-serif;
-    color: #707070;
+    font-family: 'Inter', sans-serif;
+    // color: #707070;
   }
 
   html,

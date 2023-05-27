@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
-import AboutMain from './AboutMain/AboutMain';
-import AboutInfo from './AboutInfo/AboutInfo';
-import AboutCareer from './AboutCareer/AboutCareer';
+import Future from './screen/Future';
+import Scroll from './screen/Scroll';
+import Pictures from './screen/Pictures';
+import Resume from './screen/Resume';
 
 const AboutMeWrap = styled.div`
   width: 100%;
@@ -10,19 +11,17 @@ const AboutMeWrap = styled.div`
   background-color: #fff;
   section {
     width: 100%;
-    padding: 50px 10vw;
-    &[class*='AboutMain'] {
-      padding: 0 0;
-    }
+    padding: 0 80px;
   }
 `;
 
 const AboutMe : FunctionComponent = function(){
   return (
     <AboutMeWrap>
-      <AboutMain/>
-      <AboutInfo/>
-      <AboutCareer/>
+      <Future />
+      <Scroll />
+      <Pictures />
+      <Resume />
     </AboutMeWrap>
   );
 }

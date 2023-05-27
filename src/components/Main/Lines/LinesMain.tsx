@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import MainText from './MainText';
-import AboutMainCanvas from './AboutMainCanvas';
+import AboutMainCanvas from './LinesMainCanvas';
 
 const AboutMainWrap = styled.section`
   position: relative;
@@ -20,7 +19,6 @@ const AboutMain:FunctionComponent = function(){
 
   return (
     <AboutMainWrap ref={aboutMainWrap}>
-      <MainText/>
     </AboutMainWrap>
   );
 }

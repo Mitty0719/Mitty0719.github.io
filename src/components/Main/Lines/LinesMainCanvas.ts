@@ -1,4 +1,3 @@
-import { LineStyle } from 'pixi.js';
 import LineGroup from './LineGroup';
 import SquareGroup from './SquareGroup';
 
