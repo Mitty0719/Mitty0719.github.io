@@ -78,6 +78,8 @@ const IconText = styled.div`
 const FutureIcon = styled.span`
   display: inline-block;
   min-width: 320px;
+  text-align: center;
+  transform: translateY(5px);
 `;
 const ChangedText = styled.div`
   min-height: 116px;
@@ -88,25 +90,32 @@ const ChangedText = styled.div`
 
 const Future : FunctionComponent = function () {
   
-  const futureList = ['Developer', 'Leader', 'Photographer', 'Mentor'];
-  const futureColor = ['#fac901', '#225095', '#dd0100', '#fac901'];
+  const futureList = [
+    { title: 'Developer', color: '#fac901', icon: '⎇', },
+    { title: 'Leader', color: '#225095', icon: '⎈', }, // ☸
+    { title: 'Photographer', color: '#dd0100', icon: '❁', },
+    { title: 'Mentor', color: '#fac901', icon: '✍︎', },
+  ]
   const dummyLetterList = ['#', '$', '%', '@', '~', '&', '+', '-', '=', '/'];
   const [futureTextIndex, setFutureTextIndex] = useState(0);
   const [changedText, setChangedText] = useState('');
   const [changedTextColor, setChangedTextColor] = useState({});
+  const [changedIcon, setChangedIcon] = useState('');
+  const [isClickedChangedText, setIsClickedChangedText] = useState(false);
   let changedLetterIndex = 0;
   const [textChangeInterval, setTextChangeInterval] = useState(setInterval(()=>{}, 9999999));
 
   useEffect(() => {
     setFutureTextIndex(0);
-
   }, []);
 
   useEffect(() => {
     clearInterval(textChangeInterval);
-    const targetText = futureList[futureTextIndex];
-    setChangedTextColor({color: futureColor[futureTextIndex].toString()});
-    typeTextEffect(targetText);
+    const {title, color, icon} = futureList[futureTextIndex];
+    setChangedTextColor({color: color});
+    setChangedIcon(icon);
+    setIsClickedChangedText(false);
+    typeTextEffect(title);
 
     setTimeout(() => {
       if(futureTextIndex >= futureList.length - 1) {
@@ -117,6 +126,9 @@ const Future : FunctionComponent = function () {
     }, 5000)
   }, [futureTextIndex]);
 
+  function onClickChangedText() {
+    setIsClickedChangedText(true);
+  }
 
   function typeTextEffect(targetText : String) {
 
@@ -147,8 +159,8 @@ const Future : FunctionComponent = function () {
         <AsteriskIcon src="../../../../image/icon_asterisk03.svg" alt="" />
       </AsteriskCon>
       <FutureTextCon>
-        <IconText>I'll be (<FutureIcon></FutureIcon>)</IconText>
-        <ChangedText style={changedTextColor}>{changedText}</ChangedText>
+        <IconText>I'll be (<FutureIcon>{isClickedChangedText && changedIcon}</FutureIcon>)</IconText>
+        <ChangedText style={changedTextColor} onClick={onClickChangedText}>{changedText}</ChangedText>
       </FutureTextCon>
     </FutureCon>
   );
