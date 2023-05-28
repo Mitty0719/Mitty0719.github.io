@@ -30,16 +30,17 @@ const PictureItem = styled.li`
   position: relative;
   display: inline-block;
   flex: 1;
-  min-width: 380px;
+  min-width: 440px;
   height: 360px;
-  background-color: #ccc;
+  background-color: #fff;
   overflow: hidden;
 `;
 const PictureImage = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 100%;
+  width: 100%;
+  // height: 100%;
   transform: translate(-50%, -50%);
 `;
 
