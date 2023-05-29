@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import styled from "@emotion/styled";
 
 const PictureCon = styled.section`
-
+  margin-top: 400px;
 `;
 
 const PictureContent = styled.div`
