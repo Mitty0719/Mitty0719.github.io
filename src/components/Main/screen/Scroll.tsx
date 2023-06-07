@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 
 const ScrollCon = styled.section`
@@ -52,7 +52,25 @@ const ScrollTextItem = styled.li`
   font-weight: 800;
 `;
 
+const ScrollBoxItem = styled.img`
+  position: absolute;
+  width: 200px;
+`;
+
 const Scroll : FunctionComponent = function () {
+
+  const scrollItemList = [...Array(4)].map(() => useRef(null));
+  useEffect(() => {
+    const observer = new IntersectionObserver((item) => {
+      // do something
+    });
+    for(const scrollItem of scrollItemList) {
+      if(scrollItem.current) {
+        observer.observe(scrollItem.current);
+      }
+    }
+  }, []);
+
   return (
     <ScrollCon>
       <ScrollContent>
@@ -70,7 +88,9 @@ const Scroll : FunctionComponent = function () {
           </ScrollTextList>
         </ScrollTextCon>
         <ScrollBox>
-
+          <ScrollBoxItem ref={scrollItemList[0]} src="../../../../image/bicycle.svg" style={{top: '500px'}}/>
+          <ScrollBoxItem ref={scrollItemList[1]} src="../../../../image/sweetpotato.svg" style={{top: '800px'}} />
+          <ScrollBoxItem ref={scrollItemList[2]} src="../../../../image/camera.svg" style={{top: '1600px'}}/>
         </ScrollBox>
       </ScrollContent>
     </ScrollCon>
