@@ -142,15 +142,15 @@ function createResumeArticle() {
   const dom: Array<ReactElement> = [];
   for(const item of resumeList) {
     dom.push(
-      <ResumeArticle>
+      <ResumeArticle key={item.title}>
         <ResumeArticleTitleCon>
           <ResumeArticleTitle>{item.title}</ResumeArticleTitle>
         </ResumeArticleTitleCon>
         <ResumeItemList>
-          {item.dataList.map(innerData => <ResumeItem>
+          {item.dataList.map(innerData => <ResumeItem key={innerData.title}>
             <ResumeItemTitle>{innerData.title} <ResumeItemDate>{innerData.date}</ResumeItemDate></ResumeItemTitle>
             {innerData.descList && <ResumeItemDescList>
-              { innerData.descList.map(descData => <ResumeItemDescItem>{descData}</ResumeItemDescItem>)}
+              { innerData.descList.map(descData => <ResumeItemDescItem key={descData}>{descData}</ResumeItemDescItem>)}
             </ResumeItemDescList>}
           </ResumeItem>)}
         </ResumeItemList>
