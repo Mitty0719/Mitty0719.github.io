@@ -6,7 +6,6 @@ const MenuWrapper = styled('nav')`
   position: absolute;
   display: flex;
   flex-flow: row;
-  top: 20px;
   left: 50%;
   gap: 32px;
   transform: translateX(-50%);

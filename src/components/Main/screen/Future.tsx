@@ -11,7 +11,7 @@ const FutureVerticalBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #fafafa 5%, rgba(0, 0, 0, 0) 0);
+  background: linear-gradient(90deg, #fafafa 2%, rgba(0, 0, 0, 0) 0);
   background-size: calc(100% / 8) 100%;
 `;
 const FutureHorizontalBackground = styled.div`
@@ -20,7 +20,7 @@ const FutureHorizontalBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, #fafafa 5%, rgba(0, 0, 0, 0) 0);
+  background: linear-gradient(0deg, #fafafa 2%, rgba(0, 0, 0, 0) 0);
   background-size: 150px calc(100% / 6);
 `;
 const AsteriskCon = styled.div`
@@ -31,7 +31,7 @@ const AsteriskCon = styled.div`
 
   position: absolute;
   top: calc(64.5px + 120px);
-  left: 180px;
+  right: 180px;
   animation: asterisk-con-rotate 12s infinite linear;
   transform-origin: calc(64px / 2) calc(64px / 2);
 `;
@@ -67,12 +67,11 @@ const AsteriskIcon = styled.img`
 const FutureTextCon = styled.div`
   position: absolute;
   bottom: 80px;
-  right: 80px;
-  font-size: 96px;
+  left: 80px;
   font-weight: bold;
-  letter-spacing: 10px;
 `;
 const IconText = styled.div`
+  font-size: 72px;
   line-height: 116px;
 `
 const FutureIcon = styled.span`
@@ -83,6 +82,7 @@ const FutureIcon = styled.span`
 `;
 const ChangedText = styled.div`
   min-height: 116px;
+  font-size: 160px;
   line-height: 116px;
   text-align: left;
   cursor: pointer;

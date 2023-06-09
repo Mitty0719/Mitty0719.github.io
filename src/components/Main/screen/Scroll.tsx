@@ -11,7 +11,8 @@ const ScrollContent = styled.article`
 `;
 const FadeBoxCon = styled.div`
   width: 50vw;
-  transform: translateY(-40px);
+  margin-top: 360px;
+  transform: translateY(0px);
 `;
 const FadeCanvas = styled.canvas`
   position: absolute;
@@ -64,7 +65,7 @@ const Scroll : FunctionComponent = function () {
   let ctx : CanvasRenderingContext2D | null = null;
   let canvasWidth = 0;
   let canvasHeight = 0;
-  const imageCnt = 95;
+  const imageCnt = 397;
   const canvasImageList : Array<HTMLImageElement> = [];
   let canvasImageSequence = 0;
   let loopIndex = 0;
@@ -101,6 +102,8 @@ const Scroll : FunctionComponent = function () {
     if(canvas) {
       canvasWidth = canvas.clientWidth;
       canvasHeight = canvas.clientHeight;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
     }
     if(ctx) {
       window.requestAnimationFrame(canvasLoop);
@@ -111,10 +114,11 @@ const Scroll : FunctionComponent = function () {
     window.requestAnimationFrame(canvasLoop);
     ctx!.clearRect(0, 0, canvasWidth, canvasHeight);
     // 중간에 위치 하게 계산하기
-    ctx!.drawImage(canvasImageList[canvasImageSequence], 0, 0, 300,  200);
-    if(!(loopIndex % 10)) {
-      canvasImageSequence++;
-    }
+    ctx!.drawImage(canvasImageList[canvasImageSequence], 0, 0, canvasWidth,  canvasHeight);
+    // if(!(loopIndex % 2)) {
+      //   canvasImageSequence++;
+      // }
+    canvasImageSequence++;
     if(canvasImageSequence == imageCnt) {
       canvasImageSequence = 0;
     }
@@ -122,7 +126,7 @@ const Scroll : FunctionComponent = function () {
   }
 
   function loadImages() {
-    const prefix = `../../../../video/fadebox/IMG_2417_out`;
+    const prefix = `../../../../video/fadebox/Untitled-4`;
     
     let image = null;
     for(let i = 1; i <= imageCnt; i++ ) {
@@ -136,7 +140,7 @@ const Scroll : FunctionComponent = function () {
     <ScrollCon>
       <ScrollContent>
         <FadeBoxCon>
-            <FadeCanvas ref={fadeCanvas}/>
+          <FadeCanvas ref={fadeCanvas}/>
           {fadeItemHeightList.map(height => <FadeItem key={height} style={{height: height}}/>)}
         </FadeBoxCon>
         <ScrollBox>

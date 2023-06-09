@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
-import ProfileImage from './ProfileImage';
 import Menu from './Menu';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
@@ -21,8 +20,10 @@ const Background = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
+  height: 80px;
   margin: 0 auto;
   padding: 20px 140px;
 `;
