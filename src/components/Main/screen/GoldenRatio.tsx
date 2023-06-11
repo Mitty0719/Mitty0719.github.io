@@ -22,82 +22,32 @@ const GoldenRatio : FunctionComponent = function () {
   const refCanvas = useRef(null);
   let container : HTMLDivElement | null = null;
   let canvas : HTMLCanvasElement | null = null;
-  let ctx : CanvasRenderingContext2D | null = null;
-  let stageWidth = 0;
-  let stageHeight = 0;
-  const imageCnt = 499;
-  const canvasImageList : Array<HTMLImageElement> = [];
-  let canvasImageSequence = 0;
-  let goldenRatioWidth = 0;
-  let goldenRatioHeight = 0;
-
-  let goldenRatioItemList : Array<Item> = [];
 
   useEffect(() => {
     if(refContainer.current) {
       container = refContainer.current as HTMLDivElement;
-      stageWidth = container.clientWidth;
-      stageHeight = container.clientHeight;
     }
     if(refCanvas.current) {
       canvas = refCanvas.current as HTMLCanvasElement;
-      ctx = canvas.getContext('2d');
-
-      canvas.width = stageWidth;
-      canvas.height = stageHeight;
-
-      window.requestAnimationFrame(canvasLoop);
     }
 
-    loadImages();
-    createGoldenRatioItem();
+  new GoldenRatioCanvasApp(container!, canvas!, loadImages());
+    
   }, []);
 
-
-  function canvasLoop() {
-    window.requestAnimationFrame(canvasLoop);
-    ctx!.clearRect(0, 0, stageWidth, stageHeight);
-
-    for(const item of goldenRatioItemList) {
-      item.draw(ctx!, canvasImageList[canvasImageSequence]);
-    }
-    canvasImageSequence++;
-    if(canvasImageSequence == imageCnt) {
-      canvasImageSequence = 0;
-    }
-  }
-
   function loadImages() {
+    const images = [];
     const prefix = `../../../../video/goldenRatio/image`;
+    const imageCnt = 499;
     
     let image = null;
     for(let i = 1; i <= imageCnt; i++ ) {
       image = new Image;
       image.src = prefix + (String(i).padStart(4, '0')) + '.jpg';
-      canvasImageList.push(image);
+      images.push(image);
     }
-  }
 
-  function createGoldenRatioItem() {
-    const goldenRatioItemCnt = 8;
-
-    let width = 600;
-    let height = width * GOLDEN_RATIO;
-    let prevItem : Item | null = null;
-
-    goldenRatioWidth = width;
-    goldenRatioHeight = height;
-
-    for(let i = 0; i <= goldenRatioItemCnt; i++) {
-      const item : Item = new Item(width, i, prevItem, stageWidth, stageHeight, goldenRatioWidth, goldenRatioHeight);
-      
-      goldenRatioItemList.push(item);
-      
-      width = height - width;
-      height = width * GOLDEN_RATIO;
-
-      prevItem = item;
-    }
+    return {images, imageCnt};
   }
 
   return (
@@ -107,6 +57,81 @@ const GoldenRatio : FunctionComponent = function () {
   );
 
 };
+
+class GoldenRatioCanvasApp {
+  container : HTMLDivElement;
+  canvas : HTMLCanvasElement;
+  ctx : CanvasRenderingContext2D | null;
+  stageWidth : number;
+  stageHeight : number;
+  imageList : { images: Array<HTMLImageElement>, imageCnt: number };
+  imageSequence: number;
+  goldenRatioWidth : number;
+  goldenRatioHeight : number;
+  goldenRatioItemList : Array<Item>;
+
+  constructor (container: HTMLDivElement, canvas : HTMLCanvasElement, imageList: {images: Array<HTMLImageElement>, imageCnt: number}) {
+    this.container = container;
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.stageWidth = 0;
+    this.stageHeight = 0;
+    this.imageList = imageList;
+    this.imageSequence = 0;
+    this.goldenRatioWidth = 0;
+    this.goldenRatioHeight = 0;
+    this.goldenRatioItemList = [];
+    
+    this.resize();
+    this.createGoldenRatioItem();
+
+    window.requestAnimationFrame(this.canvasLoop.bind(this));
+    window.addEventListener('resize', this.resize.bind(this));
+  }
+
+  resize () {
+    this.stageWidth = this.container.clientWidth;
+    this.stageHeight = this.container.clientHeight;
+
+    this.canvas.width = this.stageWidth;
+    this.canvas.height = this.stageHeight;
+  }
+
+  canvasLoop() {
+    window.requestAnimationFrame(this.canvasLoop.bind(this));
+    this.ctx!.clearRect(0, 0, this.stageWidth, this.stageHeight);
+
+    for(const item of this.goldenRatioItemList) {
+      item.draw(this.ctx!, this.imageList.images[this.imageSequence]);
+    }
+    this.imageSequence++;
+    if(this.imageSequence == this.imageList.imageCnt) {
+      this.imageSequence = 0;
+    }
+  }
+
+  createGoldenRatioItem() {
+    const goldenRatioItemCnt = 8;
+
+    let width = 600;
+    let height = width * GOLDEN_RATIO;
+    let prevItem : Item | null = null;
+
+    this.goldenRatioWidth = width;
+    this.goldenRatioHeight = height;
+
+    for(let i = 0; i <= goldenRatioItemCnt; i++) {
+      const item : Item = new Item(width, i, prevItem, this.stageWidth, this.stageHeight, this.goldenRatioWidth, this.goldenRatioHeight);
+      
+      this.goldenRatioItemList.push(item);
+      
+      width = height - width;
+      height = width * GOLDEN_RATIO;
+
+      prevItem = item;
+    }
+  }
+}
 
 class Item {
   originX: number;
