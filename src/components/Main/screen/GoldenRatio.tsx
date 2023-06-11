@@ -1,10 +1,11 @@
 import { FunctionComponent, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
+import ScrollEvent from '../../../../static/js/scrollEvent';
 
 const GoldenRatioCon = styled.section`
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 500vh;
   margin: 500px 0;
 `
 const GoldenRatioCanvas = styled.canvas`
@@ -12,7 +13,10 @@ const GoldenRatioCanvas = styled.canvas`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  &.sticky-elem {
+    position: sticky;
+  }
 `;
 const GOLDEN_RATIO = 1.618;
 
@@ -29,10 +33,14 @@ const GoldenRatio : FunctionComponent = function () {
     }
     if(refCanvas.current) {
       canvas = refCanvas.current as HTMLCanvasElement;
+      canvas.id = 'goldenRatio-canvas'
     }
 
-  new GoldenRatioCanvasApp(container!, canvas!, loadImages());
+    new GoldenRatioCanvasApp(canvas!, loadImages());
     
+    const eventObj = new ScrollEvent();
+    container?.classList.add('scroll-section');
+    eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0, endRatio: 1}) 
   }, []);
 
   function loadImages() {
@@ -59,7 +67,6 @@ const GoldenRatio : FunctionComponent = function () {
 };
 
 class GoldenRatioCanvasApp {
-  container : HTMLDivElement;
   canvas : HTMLCanvasElement;
   ctx : CanvasRenderingContext2D | null;
   stageWidth : number;
@@ -70,8 +77,7 @@ class GoldenRatioCanvasApp {
   goldenRatioHeight : number;
   goldenRatioItemList : Array<Item>;
 
-  constructor (container: HTMLDivElement, canvas : HTMLCanvasElement, imageList: {images: Array<HTMLImageElement>, imageCnt: number}) {
-    this.container = container;
+  constructor (canvas : HTMLCanvasElement, imageList: {images: Array<HTMLImageElement>, imageCnt: number}) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.stageWidth = 0;
@@ -90,8 +96,8 @@ class GoldenRatioCanvasApp {
   }
 
   resize () {
-    this.stageWidth = this.container.clientWidth;
-    this.stageHeight = this.container.clientHeight;
+    this.stageWidth = window.innerWidth;
+    this.stageHeight = window.innerHeight;
 
     this.canvas.width = this.stageWidth;
     this.canvas.height = this.stageHeight;
