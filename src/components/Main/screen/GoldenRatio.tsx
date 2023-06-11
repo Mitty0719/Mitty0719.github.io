@@ -25,10 +25,11 @@ const GoldenRatio : FunctionComponent = function () {
   let ctx : CanvasRenderingContext2D | null = null;
   let stageWidth = 0;
   let stageHeight = 0;
-  const imageCnt = 397;
+  const imageCnt = 499;
   const canvasImageList : Array<HTMLImageElement> = [];
   let canvasImageSequence = 0;
-  let curItem : Item | null = null;
+  let goldenRatioWidth = 0;
+  let goldenRatioHeight = 0;
 
   let goldenRatioItemList : Array<Item> = [];
 
@@ -67,7 +68,7 @@ const GoldenRatio : FunctionComponent = function () {
   }
 
   function loadImages() {
-    const prefix = `../../../../video/fadebox/Untitled-4`;
+    const prefix = `../../../../video/goldenRatio/image`;
     
     let image = null;
     for(let i = 1; i <= imageCnt; i++ ) {
@@ -84,9 +85,11 @@ const GoldenRatio : FunctionComponent = function () {
     let height = width * GOLDEN_RATIO;
     let prevItem : Item | null = null;
 
+    goldenRatioWidth = width;
+    goldenRatioHeight = height;
+
     for(let i = 0; i <= goldenRatioItemCnt; i++) {
-      console.log(i, prevItem);
-      const item : Item = new Item(width, i, prevItem);
+      const item : Item = new Item(width, i, prevItem, stageWidth, stageHeight, goldenRatioWidth, goldenRatioHeight);
       
       goldenRatioItemList.push(item);
       
@@ -115,25 +118,21 @@ class Item {
   width: number;
   xGap: number;
   yGap: number;
-  videoX: number;
-  videoY: number;
   goldenRatioX: number;
   goldenRatioY: number;
 
   color: string;
 
-  constructor(width: number, index: number, prevItem: Item | null) {
+  constructor(width: number, index: number, prevItem: Item | null, stageWidth : number, stageHeight : number, goldenRatioWidth : number, goldenRatioHeight : number) {
     this.originX = 0;
     this.originY = 0;
-    this.minX = 0;
-    this.minY = 0;
+    this.minX = stageWidth / 2 - goldenRatioWidth / 2;
+    this.minY = stageHeight / 2 - goldenRatioHeight / 2;
     this.maxX = this.minX + width;
     this.maxY = this.minY + width;
     this.width = width;
     this.xGap = 0;
     this.yGap = 0;
-    this.videoX = 0;
-    this.videoY = 0;
     this.goldenRatioX = 0;
     this.goldenRatioY = 0;
     this.color = 'black';
@@ -156,7 +155,7 @@ class Item {
   draw(ctx : CanvasRenderingContext2D, image : CanvasImageSource) {
     // ctx.fillRect(this.minX, this.minY, this.width, this.width);
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.minX + this.goldenRatioX, this.minY + this.goldenRatioY, this.width, this.width);
+    // ctx.fillRect(this.minX + this.goldenRatioX, this.minY + this.goldenRatioY, this.width, this.width);
     ctx.drawImage(image, this.goldenRatioX, this.goldenRatioY, this.width, this.width , this.minX + this.goldenRatioX, this.minY + this.goldenRatioY, this.width, this.width);
   }
 
