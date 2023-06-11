@@ -4,6 +4,7 @@ import Future from './screen/Future';
 import Scroll from './screen/Scroll';
 import Pictures from './screen/Pictures';
 import Resume from './screen/Resume';
+import GoldenRatio from './screen/GoldenRatio';
 
 const AboutMeWrap = styled.div`
   width: 100%;
@@ -19,6 +20,7 @@ const AboutMe : FunctionComponent = function(){
   return (
     <AboutMeWrap>
       <Future />
+      <GoldenRatio />
       <Scroll />
       <Pictures />
       <Resume />

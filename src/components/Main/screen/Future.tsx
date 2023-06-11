@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 const FutureCon = styled.section`
   position: relative;
   height: 100vh;
+  overflow: hidden;
 `;
 const FutureVerticalBackground = styled.div`
   position: absolute;
