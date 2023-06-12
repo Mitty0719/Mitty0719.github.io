@@ -21,7 +21,7 @@ const AboutMe : FunctionComponent = function(){
     <AboutMeWrap>
       <Future />
       <GoldenRatio />
-      <Scroll />
+      {/* <Scroll /> */}
       <Pictures />
       <Resume />
     </AboutMeWrap>

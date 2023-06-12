@@ -26,21 +26,36 @@ const GoldenRatio : FunctionComponent = function () {
   const refCanvas = useRef(null);
   let container : HTMLDivElement | null = null;
   let canvas : HTMLCanvasElement | null = null;
+  let eventObj : any;
 
   useEffect(() => {
+    const options = {
+      threshold: 0.75,
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          canvasApp.isShowing = true;
+        } else {
+        }
+      });
+    }, options);
+
     if(refContainer.current) {
       container = refContainer.current as HTMLDivElement;
+      container?.classList.add('scroll-section');
+      eventObj = new ScrollEvent();
     }
     if(refCanvas.current) {
       canvas = refCanvas.current as HTMLCanvasElement;
-      canvas.id = 'goldenRatio-canvas'
+      canvas.id = 'goldenRatio-canvas';
+      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0, endRatio: 1});
+      
+      observer.observe(canvas);
     }
 
-    new GoldenRatioCanvasApp(canvas!, loadImages());
-    
-    const eventObj = new ScrollEvent();
-    container?.classList.add('scroll-section');
-    eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0, endRatio: 1}) 
+    const canvasApp = new GoldenRatioCanvasApp(canvas!, loadImages());
+
   }, []);
 
   function loadImages() {
@@ -76,6 +91,7 @@ class GoldenRatioCanvasApp {
   goldenRatioWidth : number;
   goldenRatioHeight : number;
   goldenRatioItemList : Array<Item>;
+  isShowing : boolean;
 
   constructor (canvas : HTMLCanvasElement, imageList: {images: Array<HTMLImageElement>, imageCnt: number}) {
     this.canvas = canvas;
@@ -87,6 +103,7 @@ class GoldenRatioCanvasApp {
     this.goldenRatioWidth = 0;
     this.goldenRatioHeight = 0;
     this.goldenRatioItemList = [];
+    this.isShowing = false;
     
     this.resize();
     this.createGoldenRatioItem();
@@ -108,7 +125,7 @@ class GoldenRatioCanvasApp {
     this.ctx!.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
     for(const item of this.goldenRatioItemList) {
-      item.draw(this.ctx!, this.imageList.images[this.imageSequence]);
+      item.draw(this.ctx!, this.imageList.images[this.imageSequence], this.isShowing);
     }
     this.imageSequence++;
     if(this.imageSequence == this.imageList.imageCnt) {
@@ -140,33 +157,38 @@ class GoldenRatioCanvasApp {
 }
 
 class Item {
-  originX: number;
-  originY: number;
+  targetX: number;
+  targetY: number;
   minX: number;
   minY: number;
-  maxX: number;
-  maxY: number;
   width: number;
   xGap: number;
   yGap: number;
   goldenRatioX: number;
   goldenRatioY: number;
+  moveX: number;
+  moveY: number;
+  opacity: number;
+  opacitySpeed: number;
 
   color: string;
 
   constructor(width: number, index: number, prevItem: Item | null, stageWidth : number, stageHeight : number, goldenRatioWidth : number, goldenRatioHeight : number) {
-    this.originX = 0;
-    this.originY = 0;
+    this.targetX = stageWidth / 2 - goldenRatioWidth / 2;
+    this.targetY = stageHeight / 2 - goldenRatioHeight / 2;
     this.minX = stageWidth / 2 - goldenRatioWidth / 2;
-    this.minY = stageHeight / 2 - goldenRatioHeight / 2;
-    this.maxX = this.minX + width;
-    this.maxY = this.minY + width;
+    this.minY = stageHeight / 2 - goldenRatioHeight / 2 - 1200;
     this.width = width;
     this.xGap = 0;
     this.yGap = 0;
     this.goldenRatioX = 0;
     this.goldenRatioY = 0;
     this.color = 'black';
+    this.moveX = 0;
+    this.moveY = (Math.random() * 10 + 20) / -500;
+    this.opacity = 0;
+    this.opacitySpeed = 0.01;
+
     switch(index) {
       case 0 : this.color = 'red'; break;
       case 1 : this.color = 'green'; break;
@@ -180,11 +202,21 @@ class Item {
     }
 
     this.calcIndexToCoordinate(index, prevItem);
-    
   }
 
-  draw(ctx : CanvasRenderingContext2D, image : CanvasImageSource) {
+  draw(ctx : CanvasRenderingContext2D, image : CanvasImageSource, isShowing : boolean) {
+    if(isShowing) {
+      if(Math.abs(this.targetX - this.minX) > Math.abs(this.moveX)) {
+        this.minX += this.moveX;
+      }
+      if(Math.abs(this.targetY - this.minY) > Math.abs(this.moveY)) {
+        this.minY += (this.minY - this.targetY) * this.moveY;
+      }
+      this.opacity += this.opacitySpeed;
+    }
+
     // ctx.fillRect(this.minX, this.minY, this.width, this.width);
+    ctx.globalAlpha = this.opacity;
     ctx.fillStyle = this.color;
     // ctx.fillRect(this.minX + this.goldenRatioX, this.minY + this.goldenRatioY, this.width, this.width);
     ctx.drawImage(image, this.goldenRatioX, this.goldenRatioY, this.width, this.width , this.minX + this.goldenRatioX, this.minY + this.goldenRatioY, this.width, this.width);
