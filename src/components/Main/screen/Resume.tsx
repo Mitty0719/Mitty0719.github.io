@@ -12,7 +12,8 @@ const ResumeTitleCon = styled.div`
 
 const ResumeTitle = styled.h3`
   font-size: 46px;
-  font-weight: normal;
+  font-weight: bold;
+  color: #888;
 `;
 
 const ResumeContent = styled.div`
@@ -40,23 +41,51 @@ const ResumeArticleCon = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 36px;
+  row-gap: 72px;
   margin-top: 76px;
 `;
-const ResumeArticle = styled.li``;
+const ResumeArticle = styled.li`
+`;
 const ResumeArticleTitleCon = styled.div``;
 const ResumeArticleTitle = styled.h4`
   font-size: 36px;
-  font-weight: normal;
+  font-weight: bold;
 `;
 
 const ResumeItemList = styled.ul`
   display: flex;
   flex-flow: column nowrap;
   gap: 18px;
-  margin-top: 18px;
+  margin-top: 36px;
   padding-left: 8px;
 `;
-const ResumeItem = styled.li``;
+const ResumeItem = styled.li`
+  position: relative;
+  padding-left: 56px;
+  min-height: 40px;
+`;
+const ResumeItemImage = styled.img`
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #f0f0f0;
+  transform: translateY(-10px);
+  
+  &::after {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 70px;
+    background-color: #000;
+    content: '';
+  }
+`;
 const ResumeItemTitle = styled.div`
   font-weight: bold;
 `;
@@ -82,17 +111,17 @@ const resumeList = [
   {
     title: 'Work Experience',
     dataList: [
-      { title: 'SEMES - 제조기술팀', descList: ['디스플레이 제작 설비 검수'], date: '2017.11 ~ 2018.04' },
-      { title: '미래정보기술 - 개발팀', descList: ['MES 프로그램 개발'], date: '2021.04 ~ 2021.10' },
-      { title: '레이랩 - UX/UI개발팀', descList: ['ERP, HR 시스템 퍼블리싱'], date: '2022.07 ~ 재직중' },
+      { title: 'SEMES - 제조기술팀', descList: ['디스플레이 제작 설비 검수'], date: '2017.11 ~ 2018.04', image: 'semes.png' },
+      { title: '미래정보기술 - 개발팀', descList: ['MES 프로그램 개발'], date: '2021.04 ~ 2021.10', image: 'mirae.png' },
+      { title: '레이랩 - UX/UI개발팀', descList: ['ERP, HR 시스템 퍼블리싱'], date: '2022.07 ~ 재직중', image: 'raylab.png' },
     ],
   },
   {
     title: 'Education Experience',
     dataList: [
-      { title: '부산기계공업고등학교', descList: ['메카트로닉스과 졸업'],  date: '2014.03 ~ 2017.02'},
-      { title: 'SBS아카데이컴퓨터아트학원', descList: ['웹디자인과정 수료'],  date: '2018.04 ~ 2018.10'},
-      { title: '부산IT전문학교', descList: ['빅데이터기반데이터시각화과정 수료'],  date: '2020.10 ~ 2021.04'},
+      { title: '부산기계공업고등학교', descList: ['메카트로닉스과 졸업'],  date: '2014.03 ~ 2017.02', image: 'highschool.png'},
+      { title: 'SBS아카데이컴퓨터아트학원', descList: ['웹디자인과정 수료'],  date: '2018.04 ~ 2018.10', image: 'sbs.png'},
+      { title: '부산IT교육센터', descList: ['빅데이터기반데이터시각화과정 수료'],  date: '2020.10 ~ 2021.04', image: 'itedu.png'},
     ],
   },
   {
@@ -100,40 +129,40 @@ const resumeList = [
     dataList: [
       { title: 'Initial Cleaner 제작 검수', descList: [
         `설비 제조업체와 협력해 제조과정에서 발생한 오차 확인 및 가동 테스트`
-      ],  date: '2017.12 ~ 2018.04'},
+      ],  date: '2017.12 ~ 2018.04', image: 'semes.png'},
       { title: '필름생산업체 MES 프로그램 개발', descList: [
         `필름생산 공정에서 필요한 프로그램을 개발, 사용자와 직접 소통하며 프로그램 개선`,
         `프로젝트 진행에 필요한 문서 관리(화면설계서, DB설계서, 프로그램 정의서, 메뉴얼 등)`,
         `C#, DevExpress, MSSQL`
-      ],  date: '2021.06 ~ 2021.10'},
+      ],  date: '2021.06 ~ 2021.10', image: 'mirae.png'},
       { title: '전자선조사업체 MES 프로그램 개발', descList: [
         `전자선 조사 과정에서 필요한 프로그램을 개발, 현장의 설비 진행 과정을 고려해 프로그램 개선 및 변경`,
         `C#, DevExpress, MSSQL`
-      ],  date: '2021.08 ~ 2021.10'},
+      ],  date: '2021.08 ~ 2021.10', image: 'mirae.png'},
       { title: 'Posco 안전보건시스템 퍼블리싱', descList: [
         `안전보건시스템 화면 퍼블리싱`
-      ],  date: '2022.07 ~ 진행중'},
+      ],  date: '2022.07 ~ 진행중', image: 'raylab.png'},
       { title: 'Posco E&C HR시스템 퍼블리싱', descList: [
         `포스크건설 HR시스템 화면 퍼블리싱`
-      ],  date: '2023.01 ~ 진행중'},
+      ],  date: '2023.01 ~ 진행중', image: 'raylab.png'},
     ],
   },
   {
     title: 'Expertise',
     dataList: [
-      { title: 'HTML/CSS', descList: null, date: '●●●●●●●●◦◦'},
-      { title: 'Javascript', descList: null, date: '●●●●●●◦◦◦◦'},
-      { title: 'React', descList: null, date: '●●●●◦◦◦◦◦◦'},
-      { title: 'Dart', descList: null, date: '●●●●●◦◦◦◦◦'},
-      { title: 'Flutter', descList: null, date: '●●●●◦◦◦◦◦◦'},
-      { title: 'SQL', descList: null, date: '●●◦◦◦◦◦◦◦◦'},
+      { title: 'HTML/CSS', descList: null, date: '●●●●●●●●◦◦', image: 'html.png'},
+      { title: 'Javascript', descList: null, date: '●●●●●●◦◦◦◦', image: 'javascript.png'},
+      { title: 'React', descList: null, date: '●●●●◦◦◦◦◦◦', image: 'react.png'},
+      { title: 'Dart', descList: null, date: '●●●●●◦◦◦◦◦', image: 'dart.png'},
+      { title: 'Flutter', descList: null, date: '●●●●◦◦◦◦◦◦', image: 'flutter.png'},
+      { title: 'SQL', descList: null, date: '●●◦◦◦◦◦◦◦◦', image: 'sql.png'},
     ],
   },
   {
     title: 'Qualification',
     dataList: [
-      { title : '웹디자인기능사 (한국산업인력공단)', descList: null, date: '20218.09'},
-      { title : '컴퓨터그래픽스운용기능사 (한국산업인력공단)', descList: null, date: '20218.09'}
+      { title : '웹디자인기능사 (한국산업인력공단)', descList: null, date: '20218.09', image: 'hrdk.png'},
+      { title : '컴퓨터그래픽스운용기능사 (한국산업인력공단)', descList: null, date: '20218.09', image: 'hrdk.png'}
     ],
   },
 ]
@@ -148,12 +177,14 @@ function createResumeArticle() {
         </ResumeArticleTitleCon>
         <ResumeItemList>
           {item.dataList.map(innerData => <ResumeItem key={innerData.title}>
+            <ResumeItemImage src={`../../../../image/resume/${innerData.image}`} alt="resume picture"></ResumeItemImage>
             <ResumeItemTitle>{innerData.title} <ResumeItemDate>{innerData.date}</ResumeItemDate></ResumeItemTitle>
             {innerData.descList && <ResumeItemDescList>
               { innerData.descList.map(descData => <ResumeItemDescItem key={descData}>{descData}</ResumeItemDescItem>)}
             </ResumeItemDescList>}
           </ResumeItem>)}
         </ResumeItemList>
+        <picture ></picture>
       </ResumeArticle>
     );
   }
@@ -181,9 +212,9 @@ const Resume : FunctionComponent = function () {
             <ResumeArticleTitleCon>
               <ResumeArticleTitle>Contact</ResumeArticleTitle>
               <ResumeItemList>
-                <ResumeItem>e-mail : sprout071900@gmail.com</ResumeItem>
-                <ResumeItem>github : www.naver.com</ResumeItem>
-                <ResumeItem>mobile : 010-4458-9625</ResumeItem>
+                <ResumeItem style={{paddingLeft: 0}}>e-mail : sprout071900@gmail.com</ResumeItem>
+                <ResumeItem style={{paddingLeft: 0}}>github : www.naver.com</ResumeItem>
+                <ResumeItem style={{paddingLeft: 0}}>mobile : 010-4458-9625</ResumeItem>
               </ResumeItemList>
             </ResumeArticleTitleCon>
           </ResumeArticle>
