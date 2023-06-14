@@ -70,16 +70,29 @@ const FutureTextCon = styled.div`
   bottom: 80px;
   left: 80px;
   font-weight: bold;
+
+  @media (max-width: 1023px){
+    bottom: 40px;
+  }
 `;
 const IconText = styled.div`
   font-size: 72px;
   line-height: 116px;
+
+  @media (max-width: 1023px){
+    font-size: 48px;
+    line-height: 72px;
+  }
 `
 const FutureIcon = styled.span`
   display: inline-block;
   min-width: 320px;
   text-align: center;
   transform: translateY(5px);
+
+  @media (max-width: 1023px){
+    min-width: 120px;
+  }
 `;
 const ChangedText = styled.div`
   min-height: 116px;
@@ -87,6 +100,11 @@ const ChangedText = styled.div`
   line-height: 116px;
   text-align: left;
   cursor: pointer;
+
+  @media (max-width: 1023px){
+    font-size: 72px;
+    line-height: 72px;
+  }
 `;
 
 const Future : FunctionComponent = function () {

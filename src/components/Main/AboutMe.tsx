@@ -13,6 +13,10 @@ const AboutMeWrap = styled.div`
   section {
     width: 100%;
     padding: 0 80px;
+
+    @media (max-width: 1023px){
+      padding: 0;
+    }
   }
 `;
 

@@ -4,6 +4,10 @@ import styled from "@emotion/styled";
 const ResumeCon = styled.section`
   margin-top: 400px;
   margin-bottom: 200px;
+  
+  @media (max-width: 1023px){
+    padding: 0 20px !important;
+  }
 `;
 
 const ResumeTitleCon = styled.div`
@@ -22,6 +26,9 @@ const ResumeContent = styled.div`
 const InformationCon = styled.div`
   display: flex;
   gap: 92px;
+  @media (max-width: 1023px){
+    gap: 24px;
+  }
 `;
 const InformationImageCon = styled.div`
   position: relative;
@@ -43,6 +50,10 @@ const ResumeArticleCon = styled.ul`
   gap: 36px;
   row-gap: 72px;
   margin-top: 76px;
+  
+  @media (max-width: 1023px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 const ResumeArticle = styled.li`
 `;

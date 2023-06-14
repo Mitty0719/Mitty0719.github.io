@@ -40,6 +40,9 @@ const BlogName = styled(Link)`
   font-size: 24px;
   font-weight: bold;
   line-height: 24px;
+  @media (max-width: 1023px){
+    text-align: center;
+  }
 `;
 
 const Header : FunctionComponent<HeaderProps> = function(){
