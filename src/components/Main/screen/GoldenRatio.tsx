@@ -113,11 +113,16 @@ class GoldenRatioCanvasApp {
   }
 
   resize () {
+    console.log('hi');
     this.stageWidth = window.innerWidth;
     this.stageHeight = window.innerHeight;
 
     this.canvas.width = this.stageWidth;
     this.canvas.height = this.stageHeight;
+
+    for(const item of this.goldenRatioItemList) {
+      item.resize(this.stageWidth, this.stageHeight, this.goldenRatioWidth, this.goldenRatioHeight);
+    }
   }
 
   canvasLoop() {
@@ -202,6 +207,13 @@ class Item {
     }
 
     this.calcIndexToCoordinate(index, prevItem);
+  }
+
+  resize(stageWidth : number, stageHeight : number, goldenRatioWidth : number, goldenRatioHeight : number) {
+    this.targetX = stageWidth / 2 - goldenRatioWidth / 2;
+    this.targetY = stageHeight / 2 - goldenRatioHeight / 2;
+    this.minX = stageWidth / 2 - goldenRatioWidth / 2;
+    this.minY = stageHeight / 2 - goldenRatioHeight / 2 - 1200;
   }
 
   draw(ctx : CanvasRenderingContext2D, image : CanvasImageSource, isShowing : boolean) {
