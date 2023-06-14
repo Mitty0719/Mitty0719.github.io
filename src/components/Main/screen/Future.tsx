@@ -73,6 +73,7 @@ const FutureTextCon = styled.div`
 
   @media (max-width: 1023px){
     bottom: 40px;
+    left: 20px;
   }
 `;
 const IconText = styled.div`
