@@ -4,6 +4,7 @@ import GlobalStyle from 'components/Common/GlobalStyle';
 import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
 import { Helmet } from 'react-helmet';
+import MobileMenu from './MobileMenu';
 
 type TemplateProps = {
   title: string,
@@ -16,7 +17,10 @@ type TemplateProps = {
 const Container = styled.main`
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 `;
 
 const Template : FunctionComponent<TemplateProps> = function({ 
@@ -54,6 +58,7 @@ const Template : FunctionComponent<TemplateProps> = function({
         <html lang="ko"/>
       </Helmet>
       <Header/>
+      <MobileMenu/>
       <GlobalStyle/>
       {children}
       <Footer/>

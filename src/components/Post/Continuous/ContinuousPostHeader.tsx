@@ -11,6 +11,7 @@ const ContinuousPostHeaderWrap = styled.div`
   flex-flow: row nowrap;
   align-items: flex-end;
   width: 100%;
+  background-color: #fafafa;
 `;
 const ContinuousPostHeaderInfo = styled.div`
   display: flex;
@@ -30,13 +31,14 @@ const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
   overflow-wrap: break-word;
-  margin-top: auto;
+  margin-top: auto
   text-overflow: ellipsis;
   white-space: normal;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  color: #333;
   font-size: 45px;
-  font-weight: 800;
+  font-weight: bold;
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -46,7 +48,8 @@ const PostData = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 48px;
+  color: #999;
   font-size: 16px;
   font-weight: 700;
 
@@ -58,6 +61,8 @@ const PostData = styled.div`
   }
 `;
 const Tags = styled.div`
+  margin-top: 16px;
+  color: #ccc;
   font-size: 14px;
 `;
 

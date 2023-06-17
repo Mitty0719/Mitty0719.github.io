@@ -17,7 +17,7 @@ type ContinuousPostProps = {
 }
 
 const ContinuousPostWrap = styled.div`
-  margin: 100px 0;
+  margin: 80px 0;
 `;
 
 

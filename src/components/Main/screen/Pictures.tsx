@@ -13,6 +13,10 @@ const PictureContent = styled.div`
 const PictureTitleCon = styled.div`
   width: 400px;
   border-bottom: solid 4px #000;
+
+  @media (max-width: 720px) {
+    width: 240px;
+  }
 `;
 const PictureTitle = styled.h3`
   font-size: 36px;
