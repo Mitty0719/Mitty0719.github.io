@@ -84,7 +84,6 @@ const GoldenRatio : FunctionComponent = function () {
       scrollTextContainer.id = 'scroll-text-con';
       eventObj.addScrollClass({id: 'scroll-text-con', classList: ['sticky-elem'], startRatio: 0.295, endRatio: 1});
       
-      const colorList = ['#fac901', '#225095', '#dd0100'];
       const children = scrollTextContainer.children;
       let itemIndex = 1;
       for(const elem of children) {
@@ -95,7 +94,6 @@ const GoldenRatio : FunctionComponent = function () {
 
         textItem.style.top = `${Math.random() * window.innerHeight / 3 + window.innerHeight / 5}px`;
         textItem.id = id;
-        textItem.style.color = `${colorList[Math.round(Math.random() * colorList.length)]}`;
         if(textItem.classList.contains('left')) {
           eventObj.addScrollEvent({id: id, style: 'left', startRatio: startRatio, endRatio: endRatio, startValue: 0, endValue: 110, suffix: '%'});
           eventObj.addScrollEventTransform({id: id, transformStyle: [
@@ -143,11 +141,11 @@ const GoldenRatio : FunctionComponent = function () {
     <GoldenRatioCon ref={refContainer}>
       <GoldenRatioCanvas ref={refCanvas}/>
       <ScrollTextCon ref={refScrollTextContainer}>
-        <ScrollText className="left">NERD</ScrollText>
-        <ScrollText className="left">Constant</ScrollText>
-        <ScrollText className="left">Fassional</ScrollText>
-        <ScrollText className="left">Classical</ScrollText>
-        <ScrollText className="left">INFJ</ScrollText>
+        <ScrollText className="left" style={{color: '#333333'}}>NERD</ScrollText>
+        <ScrollText className="left" style={{color: '#fac901'}}>Constant</ScrollText>
+        <ScrollText className="left" style={{color: '#dd0100'}}>Fassional</ScrollText>
+        <ScrollText className="left" style={{color: '#225095'}}>Classical</ScrollText>
+        <ScrollText className="left" style={{color: '#fac901'}}>INFJ</ScrollText>
       </ScrollTextCon>
     </GoldenRatioCon>
   );
