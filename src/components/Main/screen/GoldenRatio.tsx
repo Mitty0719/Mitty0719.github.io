@@ -14,8 +14,39 @@ const GoldenRatioCanvas = styled.canvas`
   left: 0;
   width: 100%;
   height: 100vh;
+  transition-duration: .2s;
   &.sticky-elem {
-    position: sticky;
+    position: fixed;
+  }
+  &.hide-elem {
+    opacity: 0;
+  }
+`;
+const ScrollTextCon = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &.sticky-elem {
+    position: fixed;
+  }
+`;
+const ScrollText = styled.span`
+  position: absolute;
+  display: inline-block;
+  width: fit-content;
+  min-width: 120px;
+  font-size: 144px;
+  font-weight: 800;
+  white-space: pre;
+  &.left {
+    left: 0;
+    transform: translate(-120%);
+  }
+  &.right {
+    right: 0;
+    transform: translate(120%);
   }
 `;
 const GOLDEN_RATIO = 1.618;
@@ -23,8 +54,10 @@ const GOLDEN_RATIO = 1.618;
 const GoldenRatio : FunctionComponent = function () {
 
   const refContainer = useRef(null);
+  const refScrollTextContainer = useRef(null);
   const refCanvas = useRef(null);
   let container : HTMLDivElement | null = null;
+  let scrollTextContainer : HTMLDivElement | null = null;
   let canvas : HTMLCanvasElement | null = null;
   let eventObj : any;
 
@@ -46,10 +79,43 @@ const GoldenRatio : FunctionComponent = function () {
       container?.classList.add('scroll-section');
       eventObj = new ScrollEvent();
     }
+    if(refScrollTextContainer.current) {
+      scrollTextContainer = refScrollTextContainer.current as HTMLDivElement;
+      scrollTextContainer.id = 'scroll-text-con';
+      eventObj.addScrollClass({id: 'scroll-text-con', classList: ['sticky-elem'], startRatio: 0.295, endRatio: 1});
+      
+      const colorList = ['#fac901', '#225095', '#dd0100'];
+      const children = scrollTextContainer.children;
+      let itemIndex = 1;
+      for(const elem of children) {
+        const textItem = elem as HTMLDivElement;
+        const id = `text-item-${itemIndex}`;
+        const startRatio = 0.1 * itemIndex + 0.2;
+        const endRatio = startRatio + 0.3;
+
+        textItem.style.top = `${Math.random() * window.innerHeight / 3 + window.innerHeight / 5}px`;
+        textItem.id = id;
+        textItem.style.color = `${colorList[Math.round(Math.random() * colorList.length)]}`;
+        if(textItem.classList.contains('left')) {
+          eventObj.addScrollEvent({id: id, style: 'left', startRatio: startRatio, endRatio: endRatio, startValue: 0, endValue: 110, suffix: '%'});
+          eventObj.addScrollEventTransform({id: id, transformStyle: [
+            {style: 'translate', startValue: -120, endValue: 0, suffix: '%' },
+          ], startRatio: startRatio, endRatio: endRatio});
+        } else {
+          eventObj.addScrollEvent({id: id, style: 'right', startRatio: startRatio, endRatio: endRatio, startValue: 0, endValue: 110, suffix: '%'});
+          eventObj.addScrollEventTransform({id: id, transformStyle: [
+            {style: 'translate', startValue: 120, endValue: 0, suffix: '%' },
+          ], startRatio: startRatio, endRatio: endRatio});
+        }
+        itemIndex++;
+      }
+
+    }
     if(refCanvas.current) {
       canvas = refCanvas.current as HTMLCanvasElement;
       canvas.id = 'goldenRatio-canvas';
-      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0, endRatio: 1});
+      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0.295, endRatio: 1});
+      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['hide-elem'], startRatio: 1, endRatio: 1});
       
       observer.observe(canvas);
     }
@@ -76,6 +142,13 @@ const GoldenRatio : FunctionComponent = function () {
   return (
     <GoldenRatioCon ref={refContainer}>
       <GoldenRatioCanvas ref={refCanvas}/>
+      <ScrollTextCon ref={refScrollTextContainer}>
+        <ScrollText className="left">NERD</ScrollText>
+        <ScrollText className="left">Constant</ScrollText>
+        <ScrollText className="left">Fassional</ScrollText>
+        <ScrollText className="left">Classical</ScrollText>
+        <ScrollText className="left">INFJ</ScrollText>
+      </ScrollTextCon>
     </GoldenRatioCon>
   );
 
