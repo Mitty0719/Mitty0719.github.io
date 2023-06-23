@@ -29,9 +29,10 @@ const ContinuousPost: FunctionComponent<ContinuousPostProps> = function({
   }
 }){
   return <ContinuousPostWrap>
-    <ContinuousPostHeader data={frontmatter}/>
-    <PostContent html={html}/>
-    <CommentLink slug={slug}/>
+    {/* <ContinuousPostHeader data={frontmatter}/> */}
+    {/* <PostContent html={html}/> */}
+    {/* <CommentLink slug={slug}/> */}
+    {/* 여기에 블럭 넣기 */}
   </ContinuousPostWrap>
 }
 

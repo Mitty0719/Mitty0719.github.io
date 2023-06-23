@@ -6,11 +6,14 @@ const GoldenRatioCon = styled.section`
   position: relative;
   width: 100vw;
   height: 500vh;
-  margin: 500px 0;
+  &section {
+    padding-top: 500px;
+    padding-bottom: 500px;
+  }
 `
 const GoldenRatioCanvas = styled.canvas`
   position: absolute;
-  top: 0;
+  top: 20vh;
   left: 0;
   width: 100%;
   height: 100vh;
@@ -82,7 +85,7 @@ const GoldenRatio : FunctionComponent = function () {
     if(refScrollTextContainer.current) {
       scrollTextContainer = refScrollTextContainer.current as HTMLDivElement;
       scrollTextContainer.id = 'scroll-text-con';
-      eventObj.addScrollClass({id: 'scroll-text-con', classList: ['sticky-elem'], startRatio: 0.295, endRatio: 1});
+      eventObj.addScrollClass({id: 'scroll-text-con', classList: ['sticky-elem'], startRatio: 0, endRatio: 1});
       
       const children = scrollTextContainer.children;
       let itemIndex = 1;
@@ -112,8 +115,8 @@ const GoldenRatio : FunctionComponent = function () {
     if(refCanvas.current) {
       canvas = refCanvas.current as HTMLCanvasElement;
       canvas.id = 'goldenRatio-canvas';
-      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0.295, endRatio: 1});
-      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['hide-elem'], startRatio: 1, endRatio: 1});
+      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['sticky-elem'], startRatio: 0, endRatio: 1});
+      eventObj.addScrollClass({id: 'goldenRatio-canvas', classList: ['hide-elem'], startRatio: 0.9, endRatio: 2});
       
       observer.observe(canvas);
     }
@@ -184,7 +187,6 @@ class GoldenRatioCanvasApp {
   }
 
   resize () {
-    console.log('hi');
     this.stageWidth = window.innerWidth;
     this.stageHeight = window.innerHeight;
 
