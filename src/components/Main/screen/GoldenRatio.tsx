@@ -13,10 +13,11 @@ const GoldenRatioCon = styled.section`
 `
 const GoldenRatioCanvas = styled.canvas`
   position: absolute;
-  top: 20vh;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  transform: scale(0.8);
   transition-duration: .2s;
   &.sticky-elem {
     position: fixed;
