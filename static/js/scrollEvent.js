@@ -73,7 +73,6 @@ class ScrollSection {
     const targetY = scrollY - this.startY;
     let ratio = targetY / this.height;
     this.ratio = ratio;
-    console.log(scrollY, this.startY);
     // callEvents
     for(const event of this.events) {
       event();

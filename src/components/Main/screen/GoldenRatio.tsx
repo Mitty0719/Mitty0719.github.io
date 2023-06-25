@@ -52,6 +52,9 @@ const ScrollText = styled.span`
     right: 0;
     transform: translate(120%);
   }
+  @media (max-width: 768px) {
+    font-size: 72px;
+  }
 `;
 const GOLDEN_RATIO = 1.618;
 
