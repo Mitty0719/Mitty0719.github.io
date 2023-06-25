@@ -37,14 +37,10 @@ const WebPage: FunctionComponent<WebPageProps> = function({
     }
   }
 }){
+  console.dir(Object.entries(edges));
   return(
     <Template title={title} description={description} url={siteUrl} image={publicURL}>
-      {
-        Object.entries(edges).map(([id, {node}]) => {
-          return <ContinuousPost key={id} node={node}/>
-      })
-      }
-      {/* <PostContent html={html}/> */}
+      <ContinuousPost edges={Object.entries(edges)}/>
     </Template>
   );
 }

@@ -1,17 +1,18 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { PostFrontmatterType } from 'types/PostItem.types';
 
 type ContinuousPostProps = {
-  node: {
-    id: string,
-    html: string,
-    title: string,
-    fields: {
-      slug: string
+  edges: Array<Array<{
+    node: {
+      id: string,
+      html: string,
+      fields: {
+        slug: string
+      }
+      frontmatter: PostFrontmatterType
     }
-    frontmatter: PostFrontmatterType
-  }
+  }>>
 }
 
 const ContinuousPostWrap = styled.div`
@@ -30,13 +31,20 @@ const PostColumn = styled.div`
 `;
 
 const PostItem = styled.div`
+  position: relative;
   width: 100%;
   min-height: 200px;
   height: 500px;
-  border: 1px solid #ccc;
+  border: 8px solid #ccc;
   border-radius: 48px;
   margin-bottom: 80px;
+  overflow: hidden;
   cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.08);
+  }
 
   &.hType1 {
     height: 300px;
@@ -48,37 +56,58 @@ const PostItem = styled.div`
     height: 500px;
   }
 `;
+const PostItemTitle = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 28px;
+`;
 
-const ContinuousPost: FunctionComponent<ContinuousPostProps> = function({
-  node: {
-    id, html, title,
-    fields: { slug },
-    frontmatter
+const ContinuousPost: FunctionComponent<ContinuousPostProps> = function(edges : ContinuousPostProps){
+  
+  function createColumn() {
+    const columnLength = 3;
+    const itemList = edges.edges;
+
+    const columns = [];
+    for(let i = 0; i < columnLength; i++) {
+      columns.push(
+        <PostColumn>
+          {createItem(itemList, i, columnLength)}
+        </PostColumn>
+      );
+    }
+
+    return columns;
   }
-}){
 
+  function createItem(itemList: any, i : number, columnLength : number) {
+    const items = [];
+    const backgroundColors = ['#fac901','#225095', '#dd0100'];
+    for(let j = 0; j < itemList.length; j++) {
+      if(j % columnLength == i) {
+        const fromtmatter = itemList[j][1].node.frontmatter;
+        const backgroundColor = backgroundColors[Math.round(Math.random() * backgroundColors.length)];
+        items.push(
+            <PostItem className="drag-item" style={{borderColor: backgroundColor}}>
+              <PostItemTitle>
+                {fromtmatter.title}
+              </PostItemTitle>
+            </PostItem>
+          );
+        }
+    }
+    return items;
+  }
+  
   useEffect(() => {
     new ScrollList();
-    console.log(title);
-    
   }, [])
+
+
   return <ContinuousPostWrap>
       <PostContainer className="scroll-con">
-        <PostColumn>
-          <PostItem></PostItem>
-          <PostItem></PostItem>
-          <PostItem></PostItem>
-        </PostColumn>
-        <PostColumn>
-          <PostItem className="hType3"></PostItem>
-          <PostItem className="hType2"></PostItem>
-          <PostItem className="hType3"></PostItem>
-        </PostColumn>
-        <PostColumn>
-          <PostItem className="hType1"></PostItem>
-          <PostItem className="hType2"></PostItem>
-          <PostItem className="hType3"></PostItem>
-        </PostColumn>
+        { createColumn() }
       </PostContainer>
   </ContinuousPostWrap>
 }
