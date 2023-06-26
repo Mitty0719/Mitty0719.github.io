@@ -1,19 +1,21 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { PostFrontmatterType } from 'types/PostItem.types';
 
 type ContinuousPostProps = {
-  edges: Array<Array<{
-    node: {
-      id: string,
-      html: string,
-      fields: {
-        slug: string
-      }
-      frontmatter: PostFrontmatterType
-    }
-  }>>
+  edges: Array<Array<ItemType>>
 }
+type ItemType = {
+  node: {
+    id: string,
+    html: string,
+    fields: {
+      slug: string
+    }
+    frontmatter: PostFrontmatterType
+  }
+}
+
 
 const ContinuousPostWrap = styled.div`
   margin: 80px 0;
@@ -32,12 +34,13 @@ const PostColumn = styled.div`
 
 const PostItem = styled.div`
   position: relative;
+  margin-bottom: 80px;
   width: 100%;
   min-height: 200px;
   height: 500px;
-  border: 8px solid #ccc;
+  background-color: #ccc;
+  border: 8px solid #eee;
   border-radius: 48px;
-  margin-bottom: 80px;
   overflow: hidden;
   cursor: pointer;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
@@ -58,21 +61,24 @@ const PostItem = styled.div`
 `;
 const PostItemTitle = styled.div`
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 28px;
+  bottom: 24px;
+  right: 24px;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 800;
 `;
 
 const ContinuousPost: FunctionComponent<ContinuousPostProps> = function(edges : ContinuousPostProps){
   
   function createColumn() {
+    console.dir(edges.edges);
     const columnLength = 3;
-    const itemList = edges.edges;
+    const itemList : Array<Array<ItemType>> = edges.edges;
 
     const columns = [];
     for(let i = 0; i < columnLength; i++) {
       columns.push(
-        <PostColumn>
+        <PostColumn key={i}>
           {createItem(itemList, i, columnLength)}
         </PostColumn>
       );
@@ -81,21 +87,24 @@ const ContinuousPost: FunctionComponent<ContinuousPostProps> = function(edges : 
     return columns;
   }
 
-  function createItem(itemList: any, i : number, columnLength : number) {
+  function createItem(itemList: Array<Array<ItemType>> , i : number, columnLength : number) {
     const items = [];
     const backgroundColors = ['#fac901','#225095', '#dd0100'];
-    for(let j = 0; j < itemList.length; j++) {
-      if(j % columnLength == i) {
-        const fromtmatter = itemList[j][1].node.frontmatter;
-        const backgroundColor = backgroundColors[Math.round(Math.random() * backgroundColors.length)];
-        items.push(
-            <PostItem className="drag-item" style={{borderColor: backgroundColor}}>
+    if(itemList) {
+      for(let j = 0; j < itemList.length; j++) {
+        if(j % columnLength == i) {
+          const item = itemList[j][1] as ItemType;
+          const fromtmatter = item.node.frontmatter;
+          const backgroundColor = backgroundColors[Math.round(Math.random() * backgroundColors.length)];
+          items.push(
+            <PostItem key={`item-${fromtmatter.title}-${i}`} className="drag-item" style={{backgroundColor: backgroundColor}}>
               <PostItemTitle>
                 {fromtmatter.title}
               </PostItemTitle>
             </PostItem>
           );
         }
+      }
     }
     return items;
   }
